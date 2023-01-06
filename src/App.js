@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Privacy } from "./pages/Privacy";
+import { Cards } from "./pages/Cards";
+import { PageNotFound } from "./pages/PageNotFound";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <Link class="navbar-brand" to="/">
+            React route example
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <Link class="nav-link" to="/">
+                  Home
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/Cards">
+                  Cards
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/Privacy">
+                  Privacy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/Cards" element={<Cards />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
